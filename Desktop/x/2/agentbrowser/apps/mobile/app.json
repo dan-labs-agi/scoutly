@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "AgentBrowser",
+    "slug": "agentbrowser",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "platforms": ["android", "ios"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.agentbrowser.mobile",
+      "deploymentTarget": "14.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "AgentBrowser needs camera access for PiP recording",
+        "NSMicrophoneUsageDescription": "AgentBrowser needs microphone access for voice commands"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.agentbrowser.mobile",
+      "permissions": ["CAMERA", "RECORD_AUDIO", "WRITE_EXTERNAL_STORAGE"],
+      "minSdkVersion": 26
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-av",
+      "expo-file-system"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "agentbrowser",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:dev": "pnpm -r build",
+    "build:prod": "pnpm --filter shared build && pnpm --filter agent build",
+    "run:android": "concurrently \"pnpm --filter mobile dev:android\" \"pnpm --filter agent dev\"",
+    "run:ios": "concurrently \"pnpm --filter mobile dev:ios\" \"pnpm --filter agent dev\"",
+    "agent:start": "pnpm --filter agent start",
+    "mobile:start": "pnpm --filter mobile start",
+    "dev": "concurrently \"pnpm agent:start\" \"pnpm mobile:start\"",
+    "type-check": "pnpm -r run type-check",
+    "lint": "eslint . --ext .ts,.tsx",
+    "clean": "rm -rf node_modules && pnpm --filter agent clean && pnpm --filter mobile clean",
+    "test": "pnpm -r run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.5.4",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0"
+  }
+}

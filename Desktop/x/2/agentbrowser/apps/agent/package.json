@@ -1,0 +1,33 @@
+{
+  "name": "agent",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/node/host.js",
+  "scripts": {
+    "dev": "nodemon --watch src --ext ts --exec tsx src/node/host.ts",
+    "build": "tsc",
+    "start": "node dist/node/host.js",
+    "start:prod": "node --enable-source-maps dist/node/host.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@agentbrowser/shared": "workspace:*",
+    "fastify": "^4.28.1",
+    "@fastify/cors": "^9.0.1",
+    "@fastify/websocket": "^10.0.1",
+    "playwright": "^1.44.0",
+    "openai": "^4.67.3",
+    "sharp": "^0.33.5",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "tsx": "^4.19.1",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.5.4",
+    "@types/dotenv": "^8.2.0"
+  }
+}
