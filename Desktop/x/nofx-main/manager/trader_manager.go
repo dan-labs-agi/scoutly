@@ -3,8 +3,8 @@ package manager
 import (
 	"fmt"
 	"log"
-	"nofx/config"
-	"nofx/trader"
+	"danto/config"
+	"danto/trader"
 	"sync"
 	"time"
 )

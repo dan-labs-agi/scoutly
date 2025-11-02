@@ -1,4 +1,4 @@
-# 🤖 NOFX - Agentic Trading OS
+# 🤖 DANTO - Agentic Trading OS
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://golang.org/)
 [![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react)](https://reactjs.org/)
@@ -14,7 +14,7 @@
 
 ## 🚀 Universal AI Trading Operating System
 
-**NOFX** is a **universal Agentic Trading OS** built on a unified architecture. We've successfully closed the loop in crypto markets: **"Multi-Agent Decision → Unified Risk Control → Low-Latency Execution → Live/Paper Account Backtesting"**, and are now expanding this same technology stack to **stocks, futures, options, forex, and all financial markets**.
+**DANTO** is a **universal Agentic Trading OS** built on a unified architecture. We've successfully closed the loop in crypto markets: **"Multi-Agent Decision → Unified Risk Control → Low-Latency Execution → Live/Paper Account Backtesting"**, and are now expanding this same technology stack to **stocks, futures, options, forex, and all financial markets**.
 
 ### 🎯 Core Features
 
@@ -53,7 +53,7 @@ Join our Telegram developer community to discuss, share ideas, and get support:
 
 ### 🚀 Multi-Exchange Support!
 
-NOFX now supports **three major exchanges**: Binance, Hyperliquid, and Aster DEX!
+DANTO now supports **three major exchanges**: Binance, Hyperliquid, and Aster DEX!
 
 #### **Hyperliquid Exchange**
 
@@ -120,7 +120,7 @@ A Binance-compatible decentralized perpetual futures exchange!
 
 ## ✨ Current Implementation - Crypto Markets
 
-NOFX is currently **fully operational in cryptocurrency markets** with the following proven capabilities:
+DANTO is currently **fully operational in cryptocurrency markets** with the following proven capabilities:
 
 ### 🏆 Multi-Agent Competition Framework
 - **Live Agent Battle**: Qwen vs DeepSeek models compete in real-time trading
@@ -182,7 +182,7 @@ Our proven crypto infrastructure is being extended to:
 ## 🏗️ Technical Architecture
 
 ```
-nofx/
+danto/
 ├── main.go                          # Program entry (multi-trader manager)
 ├── config.json                      # Configuration file (API keys, multi-trader config)
 │
@@ -350,8 +350,8 @@ sudo apt-get install libta-lib0-dev
 ### 2. Clone the Project
 
 ```bash
-git clone https://github.com/tinkle-community/nofx.git
-cd nofx
+git clone https://github.com/somdipto/CRYTO---DAN-cli.git
+cd CRYTO---DAN-cli
 ```
 
 ### 3. Install Dependencies
@@ -482,7 +482,7 @@ cp config.json.example config.json
 
 #### 🔷 Alternative: Using Hyperliquid Exchange
 
-**NOFX also supports Hyperliquid** - a decentralized perpetual futures exchange. To use Hyperliquid instead of Binance:
+**DANTO also supports Hyperliquid** - a decentralized perpetual futures exchange. To use Hyperliquid instead of Binance:
 
 **Step 1**: Get your Ethereum private key (for Hyperliquid authentication)
 
@@ -526,7 +526,7 @@ cp config.json.example config.json
 
 #### 🔶 Alternative: Using Aster DEX Exchange
 
-**NOFX also supports Aster DEX** - a Binance-compatible decentralized perpetual futures exchange!
+**DANTO also supports Aster DEX** - a Binance-compatible decentralized perpetual futures exchange!
 
 **Why Choose Aster?**
 - 🎯 Binance-compatible API (easy migration)
@@ -776,10 +776,10 @@ Open a terminal and run:
 
 ```bash
 # Build the program (first time only, or after code changes)
-go build -o nofx
+go build -o danto
 
 # Start the backend
-./nofx
+./danto
 ```
 
 **What you should see:**

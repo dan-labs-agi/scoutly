@@ -1,7 +1,7 @@
 # docker/backend/Dockerfile
 
 # ═══════════════════════════════════════════════════════════════
-# NOFX Backend Dockerfile (Go + TA-Lib)
+# DANTO Backend Dockerfile (Go + TA-Lib)
 # Multi-stage build with shared TA-Lib compilation stage
 # Versions extracted as ARGs for maintainability
 # ═══════════════════════════════════════════════════════════════
@@ -47,7 +47,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=1 GOOS=linux go build -trimpath -ldflags="-s -w" -o nofx .
+RUN CGO_ENABLED=1 GOOS=linux go build -trimpath -ldflags="-s -w" -o danto .
 
 # ──────────────────────────────────────────────────────────────
 # Runtime Stage (Minimal Executable Environment)
@@ -58,11 +58,11 @@ RUN apk update && apk add --no-cache ca-certificates tzdata
 
 COPY --from=ta-lib-builder /usr/local /usr/local
 WORKDIR /app
-COPY --from=backend-builder /app/nofx .
+COPY --from=backend-builder /app/danto .
 
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1
 
-CMD ["./nofx"]
+CMD ["./danto"]
