@@ -16,8 +16,8 @@ docker-compose.yml
 *~
 
 # Build artifacts
-nofx
-nofx_test
+danto
+danto_test
 *.exe
 *.dll
 *.so

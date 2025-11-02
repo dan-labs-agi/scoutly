@@ -1,4 +1,4 @@
-# 🤖 NOFX - AI交易操作系统
+# 🤖 DANTO - AI交易操作系统
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://golang.org/)
 [![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react)](https://reactjs.org/)
