@@ -401,22 +401,22 @@ func (s *Server) handlePerformance(c *gin.Context) {
 	c.JSON(http.StatusOK, performance)
 }
 
-// Start 启动服务器
+// Start starts the server
 func (s *Server) Start() error {
 	addr := fmt.Sprintf(":%d", s.port)
-	log.Printf("🌐 API服务器启动在 http://localhost%s", addr)
-	log.Printf("📊 API文档:")
-	log.Printf("  • GET  /api/competition      - 竞赛总览（对比所有trader）")
-	log.Printf("  • GET  /api/traders          - Trader列表")
-	log.Printf("  • GET  /api/status?trader_id=xxx     - 指定trader的系统状态")
-	log.Printf("  • GET  /api/account?trader_id=xxx    - 指定trader的账户信息")
-	log.Printf("  • GET  /api/positions?trader_id=xxx  - 指定trader的持仓列表")
-	log.Printf("  • GET  /api/decisions?trader_id=xxx  - 指定trader的决策日志")
-	log.Printf("  • GET  /api/decisions/latest?trader_id=xxx - 指定trader的最新决策")
-	log.Printf("  • GET  /api/statistics?trader_id=xxx - 指定trader的统计信息")
-	log.Printf("  • GET  /api/equity-history?trader_id=xxx - 指定trader的收益率历史数据")
-	log.Printf("  • GET  /api/performance?trader_id=xxx - 指定trader的AI学习表现分析")
-	log.Printf("  • GET  /health               - 健康检查")
+	log.Printf("🌐 API server started at http://localhost%s", addr)
+	log.Printf("📊 API Documentation:")
+	log.Printf("  • GET  /api/competition      - Competition overview (compare all traders)")
+	log.Printf("  • GET  /api/traders          - Trader list")
+	log.Printf("  • GET  /api/status?trader_id=xxx     - System status for specified trader")
+	log.Printf("  • GET  /api/account?trader_id=xxx    - Account info for specified trader")
+	log.Printf("  • GET  /api/positions?trader_id=xxx  - Position list for specified trader")
+	log.Printf("  • GET  /api/decisions?trader_id=xxx  - Decision logs for specified trader")
+	log.Printf("  • GET  /api/decisions/latest?trader_id=xxx - Latest decisions for specified trader")
+	log.Printf("  • GET  /api/statistics?trader_id=xxx - Statistics for specified trader")
+	log.Printf("  • GET  /api/equity-history?trader_id=xxx - Equity history data for specified trader")
+	log.Printf("  • GET  /api/performance?trader_id=xxx - AI learning performance analysis for specified trader")
+	log.Printf("  • GET  /health               - Health check")
 	log.Println()
 
 	return s.router.Run(addr)

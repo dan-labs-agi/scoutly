@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ═══════════════════════════════════════════════════════════════
-# NOFX AI Trading System - Docker Quick Start Script
+# DANTO AI Trading System - Docker Quick Start Script
 # Usage: ./start.sh [command]
 # ═══════════════════════════════════════════════════════════════
 
@@ -124,7 +124,7 @@ check_config() {
 # Service Management: Start
 # ------------------------------------------------------------------------
 start() {
-    print_info "正在启动 NOFX AI Trading System..."
+    print_info "Starting DANTO AI Trading System..."
 
     # Auto-build frontend if missing or forced
     # if [ ! -d "web/dist" ] || [ "$1" == "--build" ]; then
@@ -217,7 +217,7 @@ update() {
 # Help: Usage Information
 # ------------------------------------------------------------------------
 show_help() {
-    echo "NOFX AI Trading System - Docker 管理脚本"
+    echo "DANTO AI Trading System - Docker Management Script"
     echo ""
     echo "用法: ./start.sh [command] [options]"
     echo ""

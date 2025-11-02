@@ -28,45 +28,45 @@ func main() {
 	log.Printf("📋 加载配置文件: %s", configFile)
 	cfg, err := config.LoadConfig(configFile)
 	if err != nil {
-		log.Fatalf("❌ 加载配置失败: %v", err)
+		log.Fatalf("❌ Failed to load configuration: %v", err)
 	}
 
-	log.Printf("✓ 配置加载成功，共%d个trader参赛", len(cfg.Traders))
+	log.Printf("✓ Configuration loaded successfully, %d traders participating", len(cfg.Traders))
 	fmt.Println()
 
-	// 设置默认主流币种列表
+	// Set default mainstream coin list
 	pool.SetDefaultCoins(cfg.DefaultCoins)
 
-	// 设置是否使用默认主流币种
+	// Set whether to use default mainstream coins
 	pool.SetUseDefaultCoins(cfg.UseDefaultCoins)
 	if cfg.UseDefaultCoins {
-		log.Printf("✓ 已启用默认主流币种列表（共%d个币种）: %v", len(cfg.DefaultCoins), cfg.DefaultCoins)
+		log.Printf("✓ Default mainstream coin list enabled (%d coins): %v", len(cfg.DefaultCoins), cfg.DefaultCoins)
 	}
 
-	// 设置币种池API URL
+	// Set coin pool API URL
 	if cfg.CoinPoolAPIURL != "" {
 		pool.SetCoinPoolAPI(cfg.CoinPoolAPIURL)
-		log.Printf("✓ 已配置AI500币种池API")
+		log.Printf("✓ AI500 coin pool API configured")
 	}
 	if cfg.OITopAPIURL != "" {
 		pool.SetOITopAPI(cfg.OITopAPIURL)
-		log.Printf("✓ 已配置OI Top API")
+		log.Printf("✓ OI Top API configured")
 	}
 
-	// 创建TraderManager
+	// Create TraderManager
 	traderManager := manager.NewTraderManager()
 
-	// 添加所有启用的trader
+	// Add all enabled traders
 	enabledCount := 0
 	for i, traderCfg := range cfg.Traders {
-		// 跳过未启用的trader
+		// Skip disabled traders
 		if !traderCfg.Enabled {
-			log.Printf("⏭️  [%d/%d] 跳过未启用的 %s", i+1, len(cfg.Traders), traderCfg.Name)
+			log.Printf("⏭️  [%d/%d] Skipping disabled trader %s", i+1, len(cfg.Traders), traderCfg.Name)
 			continue
 		}
 
 		enabledCount++
-		log.Printf("📦 [%d/%d] 初始化 %s (%s模型)...",
+		log.Printf("📦 [%d/%d] Initializing %s (%s model)...",
 			i+1, len(cfg.Traders), traderCfg.Name, strings.ToUpper(traderCfg.AIModel))
 
 		err := traderManager.AddTrader(
@@ -75,65 +75,65 @@ func main() {
 			cfg.MaxDailyLoss,
 			cfg.MaxDrawdown,
 			cfg.StopTradingMinutes,
-			cfg.Leverage, // 传递杠杆配置
+			cfg.Leverage, // Pass leverage configuration
 		)
 		if err != nil {
-			log.Fatalf("❌ 初始化trader失败: %v", err)
+			log.Fatalf("❌ Failed to initialize trader: %v", err)
 		}
 	}
 
-	// 检查是否至少有一个启用的trader
+	// Check if at least one trader is enabled
 	if enabledCount == 0 {
-		log.Fatalf("❌ 没有启用的trader，请在config.json中设置至少一个trader的enabled=true")
+		log.Fatalf("❌ No enabled traders found, please set at least one trader's enabled=true in config.json")
 	}
 
 	fmt.Println()
-	fmt.Println("🏁 竞赛参赛者:")
+	fmt.Println("🏁 Competition Participants:")
 	for _, traderCfg := range cfg.Traders {
-		// 只显示启用的trader
+		// Only show enabled traders
 		if !traderCfg.Enabled {
 			continue
 		}
-		fmt.Printf("  • %s (%s) - 初始资金: %.0f USDT\n",
+		fmt.Printf("  • %s (%s) - Initial Balance: %.0f USDT\n",
 			traderCfg.Name, strings.ToUpper(traderCfg.AIModel), traderCfg.InitialBalance)
 	}
 
 	fmt.Println()
-	fmt.Println("🤖 AI全权决策模式:")
-	fmt.Printf("  • AI将自主决定每笔交易的杠杆倍数（山寨币最高%d倍，BTC/ETH最高%d倍）\n",
+	fmt.Println("🤖 AI Full Decision Mode:")
+	fmt.Printf("  • AI will autonomously decide leverage for each trade (Altcoins max %dx, BTC/ETH max %dx)\n",
 		cfg.Leverage.AltcoinLeverage, cfg.Leverage.BTCETHLeverage)
-	fmt.Println("  • AI将自主决定每笔交易的仓位大小")
-	fmt.Println("  • AI将自主设置止损和止盈价格")
-	fmt.Println("  • AI将基于市场数据、技术指标、账户状态做出全面分析")
+	fmt.Println("  • AI will autonomously decide position size for each trade")
+	fmt.Println("  • AI will autonomously set stop-loss and take-profit prices")
+	fmt.Println("  • AI will make comprehensive analysis based on market data, technical indicators, and account status")
 	fmt.Println()
-	fmt.Println("⚠️  风险提示: AI自动交易有风险，建议小额资金测试！")
+	fmt.Println("⚠️  Risk Warning: AI auto-trading carries risks, recommended for small amounts testing!")
 	fmt.Println()
-	fmt.Println("按 Ctrl+C 停止运行")
+	fmt.Println("Press Ctrl+C to stop")
 	fmt.Println(strings.Repeat("=", 60))
 	fmt.Println()
 
-	// 创建并启动API服务器
+	// Create and start API server
 	apiServer := api.NewServer(traderManager, cfg.APIServerPort)
 	go func() {
 		if err := apiServer.Start(); err != nil {
-			log.Printf("❌ API服务器错误: %v", err)
+			log.Printf("❌ API server error: %v", err)
 		}
 	}()
 
-	// 设置优雅退出
+	// Set up graceful shutdown
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
 
-	// 启动所有trader
+	// Start all traders
 	traderManager.StartAll()
 
-	// 等待退出信号
+	// Wait for exit signal
 	<-sigChan
 	fmt.Println()
 	fmt.Println()
-	log.Println("📛 收到退出信号，正在停止所有trader...")
+	log.Println("📛 Received exit signal, stopping all traders...")
 	traderManager.StopAll()
 
 	fmt.Println()
-	fmt.Println("👋 感谢使用AI交易竞赛系统！")
+	fmt.Println("👋 Thank you for using DANTO AI Trading System!")
 }
