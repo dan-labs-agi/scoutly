@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(head:*)",
+      "Bash(tree -L 3 -I 'node_modules|dist|.git' --dirsfirst)",
+      "Bash(find:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
