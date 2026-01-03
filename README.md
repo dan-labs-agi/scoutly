@@ -1,4 +1,5 @@
 # Scoutly - AI-Powered Startup Discovery Platform
+<img width="1333" height="625" alt="image" src="https://github.com/user-attachments/assets/01078fbf-bb25-45a4-beb8-e3e8888498cc" />
 
 [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript)](https://www.typescriptlang.org/)
